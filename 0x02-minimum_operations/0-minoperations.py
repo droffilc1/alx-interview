@@ -20,9 +20,11 @@ def minOperations(n):
     # To count the number of operations performed
     operations = 0
 
-    # Loop until we reach exactly 1, which indicates that the operation process is complete
+    # Loop until we reach exactly 1, which indicates that the operation process
+    # is complete
     while n > 1:
-        # If n is divisible by current_length, it means this length can be used for operations
+        # If n is divisible by current_length, it means this length can be
+        # used for operations
         if n % current_length == 0:
             # Divide n by current_length to reduce the problem size
             n = n / current_length

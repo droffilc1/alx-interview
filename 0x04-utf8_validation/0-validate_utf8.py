@@ -30,11 +30,13 @@ def validUTF8(data):
             return False
         if leading_ones == 0:
             continue  # Single-byte character
-        # Check that the correct number of following bytes have the form 10xxxxxx
+        # Check that the correct number of following bytes have
+        # the form 10xxxxxx
         for _ in range(leading_ones - 1):
             trailing_byte = next(data, None)
-            if trailing_byte is None or trailing_byte >> 6 != 0b10:
-                # If there are not enough bytes left or the byte does not start with 10,
-                # then the UTF-8 encoding is invalid
+            if trailing_byte is None or \
+                    trailing_byte >> 6 != 0b10:
+                # If there are not enough bytes left or the byte does
+                #  not start with 10, then the UTF-8 encoding is invalid
                 return False
     return True

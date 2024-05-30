@@ -1,7 +1,6 @@
 # ALX Software Engineering Interview Prep Questions
 
 ## Description
-https://github.com/droffilc1/alx-interview/tree/main
 This repository contains programs written for ALX interview prep.
 
 ## Structure

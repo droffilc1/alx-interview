@@ -1,7 +1,7 @@
 # ALX Software Engineering Interview Prep Questions
 
 ## Description
-
+https://github.com/droffilc1/alx-interview/tree/main
 This repository contains programs written for ALX interview prep.
 
 ## Structure
@@ -11,3 +11,4 @@ This repository contains programs written for ALX interview prep.
 - [0x02. Minimum Operations](./0x02-minimum_operations)
 - [0x03. Log Parsing](./0x03-log_parsing)
 - [0x04. UTF-8 Validation](./0x04-utf8_validation)
+- [0x05. N Queens](./0x05-nqueens)

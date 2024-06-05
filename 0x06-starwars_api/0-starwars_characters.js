@@ -1,38 +1,39 @@
 #!/usr/bin/node
 // prints all characters of a Star Wars movie
-const request = require('request');
+const request = require('request-promise-native');
 const movieId = process.argv[2];
 const url = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
 if (!movieId) {
-  console.log('Please provide a Movie ID');
+  console.log('Usage: ./0-starwars_character MovieID');
   process.exit(1);
 }
 
-request(url, (error, response, body) => {
-  if (error) {
-    console.error('Error making the request:', error);
-    return;
+async function fetchCharacterName (characterUrl) {
+  try {
+    const characterBody = await request(characterUrl);
+    const characterData = JSON.parse(characterBody);
+    return characterData.name;
+  } catch (error) {
+    console.error('Error fetching character:', error);
   }
+}
 
-  if (response.statusCode !== 200) {
-    console.error('Error: Received status code', response.statusCode);
-    return;
-  }
+async function printCharacterNames () {
+  try {
+    const body = await request(url);
+    const filmData = JSON.parse(body);
+    const characterUrls = filmData.characters;
 
-  // Parse the response body as JSON
-  const filmData = JSON.parse(body);
-  const charactersUrls = filmData.characters;
-
-  charactersUrls.forEach(url => {
-    request(url, (charError, charResponse, charBody) => {
-      if (charError) {
-        console.error('Error: Received a status code', charResponse.statusCode);
-        return;
+    for (const characterUrl of characterUrls) {
+      const characterName = await fetchCharacterName(characterUrl);
+      if (characterName) {
+        console.log(characterName);
       }
-      // Parse the character response body as JSON
-      const characterData = JSON.parse(charBody);
-      console.log(characterData.name);
-    });
-  });
-});
+    }
+  } catch (error) {
+    console.error('Error fetching film data:', error);
+  }
+}
+
+printCharacterNames();

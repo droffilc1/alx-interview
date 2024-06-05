@@ -11,3 +11,4 @@ This repository contains programs written for ALX interview prep.
 - [0x03. Log Parsing](./0x03-log_parsing)
 - [0x04. UTF-8 Validation](./0x04-utf8_validation)
 - [0x05. N Queens](./0x05-nqueens)
+- [0x06. Star Wars API](./0x06-starwars_api)

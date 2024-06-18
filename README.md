@@ -13,3 +13,4 @@ This repository contains programs written for ALX interview prep.
 - [0x05. N Queens](./0x05-nqueens)
 - [0x06. Star Wars API](./0x06-starwars_api)
 - [0x07. Rotate 2D Matrix](./0x07-rotate_2d_matrix)
+- [0x08. Making Change](./0x08-making_change)

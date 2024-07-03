@@ -13,18 +13,20 @@ def isWinner(x, nums):
 
     Returns:
     str: The name of the player with the most wins ('Maria' or 'Ben'), or None
-         if the number of wins is tied.
+      if the number of wins is tied.
     """
+
     def sieve(n):
-        """Generates a list of prime numbers up to n using the Sieve of
-         Eratosthenes.
+        """
+        Generates a list of prime numbers up to n using the Sieve of
+        Eratosthenes.
 
-         Parameters:
-         n (int): The upper limit for generating prime numbers.
+        Parameters:
+        n (int): The upper limit for generating prime numbers.
 
-         Returns:
-         list of int: A list of prime numbers up to n.
-         """
+        Returns:
+        list of int: A list of prime numbers up to n.
+        """
         is_prime = [True] * (n + 1)  # Initialize a list to mark prime numbers
         p = 2
         while (p * p <= n):
@@ -35,21 +37,21 @@ def isWinner(x, nums):
         primes = [p for p in range(2, n + 1) if is_prime[p]]
         return primes
 
-    max_n = max(nums)  # Find the maximum number in nums to limit the sieve
-    primes = sieve(max_n)
-
-    def play_game(n):
-        """Simulates a game where players take turns removing primes and their
-        multiples.
+    def calculate_prime_moves(n, primes):
+        """
+        Calculate the number of prime moves possible for a given n.
 
         Parameters:
         n (int): The maximum number in the set for the game.
+        primes (list of int): The list of prime numbers up to the maximum
+        n in the game.
 
         Returns:
-        int: The number of moves made in the game.
+        int: The number of prime moves possible.
         """
+        available = [True] * (n + 1)
         moves = 0
-        available = [True] * (n + 1)  # Track available numbers
+
         for prime in primes:
             if prime > n:
                 break
@@ -59,12 +61,23 @@ def isWinner(x, nums):
                     available[multiple] = False
         return moves
 
+    # Edge case for 1 as there are no prime numbers
+    if max(nums) < 2:
+        return "Ben"
+
+    # Find the maximum n to limit the sieve
+    max_n = max(nums)
+
+    # Get all prime numbers up to max_n
+    primes = sieve(max_n)
+
+    # Track wins for each player
     maria_wins = 0
     ben_wins = 0
 
     # Simulate each round of the game
     for n in nums:
-        moves = play_game(n)
+        moves = calculate_prime_moves(n, primes)
         if moves % 2 == 1:
             maria_wins += 1  # Maria wins if the number of moves is odd
         else:
